@@ -7,57 +7,57 @@ class WebSerial {
 
 
     async readSerial() {
-        // function areBracesBalanced(str) {
-        //     const openBraces = [];
-        //     for (const char of str) {
-        //       if (char === '{') {
-        //         openBraces.push(char);
-        //       } else if (char === '}') {
-        //         if (openBraces.length === 0) {
-        //           return false; // Unbalanced braces
-        //         }
-        //         openBraces.pop();
-        //       }
-        //     }
-        //     return openBraces.length === 0;
-        //   }
+        function areBracesBalanced(str) {
+            const openBraces = [];
+            for (const char of str) {
+              if (char === '{') {
+                openBraces.push(char);
+              } else if (char === '}') {
+                if (openBraces.length === 0) {
+                  return false; // Unbalanced braces
+                }
+                openBraces.pop();
+              }
+            }
+            return openBraces.length === 0;
+          }
 
-        // try {
-        //     let receivedData = ''; // Variable to accumulate received data
+        try {
+            let receivedData = ''; // Variable to accumulate received data
           
-        //     const timeout = setTimeout(() => {
-        //       console.log('Timeout reached. Exiting the loop.');
-        //       // Perform any necessary actions when the timeout is reached
-        //     }, 100);
+            const timeout = setTimeout(() => {
+              console.log('Timeout reached. Exiting the loop.');
+              // Perform any necessary actions when the timeout is reached
+            }, 100);
           
-        //     while (true) {
-        //       const { value, done } = await this.reader.read();
-        //       if (done) break;
-        //       const decoder = new TextDecoder();
-        //       const partialData = decoder.decode(value);
-        //       receivedData += partialData; // Append the partial data to the accumulator
+            while (true) {
+              const { value, done } = await this.reader.read();
+              if (done) break;
+              const decoder = new TextDecoder();
+              const partialData = decoder.decode(value);
+              receivedData += partialData; // Append the partial data to the accumulator
           
-        //       console.log('Partial data received:', partialData);
+              console.log('Partial data received:', partialData);
           
-        //       if (areBracesBalanced(receivedData)) {
-        //         console.log('All braces are closed in pairs. Exiting the loop.');
-        //         break;
-        //       }
-        //     }
+              if (areBracesBalanced(receivedData)) {
+                console.log('All braces are closed in pairs. Exiting the loop.');
+                break;
+              }
+            }
           
-            // clearTimeout(timeout); // Clear the timeout
+            clearTimeout(timeout); // Clear the timeout
           
             console.log('Data received:', receivedData);
-            // Node_jsonObjects =  JSON.parse(receivedData);
-            // renderTable(Node_jsonObjects);
+            Node_jsonObjects =  JSON.parse(receivedData);
+            renderTable(Node_jsonObjects);
 
-            document.getElementById("console").textContent = receivedData;
+            document.getElementById("para").textContent = receivedData;
 
 
-          //   // Do something with the accumulated data
-          // } catch (error) {
-          //   console.error('Error reading from serial port:', error);
-          // }
+            // Do something with the accumulated data
+          } catch (error) {
+            console.error('Error reading from serial port:', error);
+          }
           
 
       }
