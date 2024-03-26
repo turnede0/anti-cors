@@ -56,7 +56,7 @@ class WebSerial {
 
             // Do something with the accumulated data
           } catch (error) {
-            console.error('Error reading from serial port:', error);
+            // console.error('Error reading from serial port:', error);
           }
           
 
