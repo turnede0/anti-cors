@@ -105,10 +105,32 @@ class WebSerial {
   
   }
 
+
+
+  async function setMsgType() {
+    await webSerial.writeSerial("AT+SPSEND=0\n");
+    }
+
+  async function setMsgTypeLighting() {
+    await webSerial.writeSerial("AT+SPSEND=1\n");
+    }
+
+  async function setMsgTypeFire() {
+    await webSerial.writeSerial("AT+SPSEND=2\n");
+    }
+
   async function disconnectSerial() {
     await webSerial.closeSerial();
     }
 
+  async function hardwareReboot() {
+    await webSerial.writeSerial("AT+REBOOT\n");
+    }
+
+  async function msgSend() {
+    await webSerial.writeSerial("AT+SEND\n");
+    }
+  
 
   async function WriteCMD(text) {
     await webSerial.writeSerial(text);
@@ -133,3 +155,7 @@ async function SendLightingAlert() {
     const jsonString = '{"node":"999","title":"Lunch","time":"12:00 ~ 12:00","venue":"Meeting Room A","content":"LCD Workpass Testing","special":2}\n';
     await webSerial.writeSerial(jsonString);
     }
+
+async function rfidScan() {
+  await webSerial.writeSerial("AT+SCANT\n");
+  }
