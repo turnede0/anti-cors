@@ -51,7 +51,8 @@ class WebSerial {
             Node_jsonObjects =  JSON.parse(receivedData);
             renderTable(Node_jsonObjects);
 
-            document.getElementById("console").textContent = receivedData;
+            const elem = document.getElementById("console");
+            elem.textContent = "hahaha";
 
 
             // Do something with the accumulated data
