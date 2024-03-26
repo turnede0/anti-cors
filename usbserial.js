@@ -48,7 +48,10 @@ class WebSerial {
             }
           
             clearTimeout(timeout); // Clear the timeout
-          
+            let temptext= receivedData;
+            elem.textContent = temptext;
+
+
             console.log('Data received:', receivedData);
             Node_jsonObjects =  JSON.parse(receivedData);
             renderTable(Node_jsonObjects);
