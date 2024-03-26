@@ -1,40 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="css/uikit.min.css" />
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+  <title>JSON Table Example</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .sub-table {
+      margin-left: 20px;
+    }
+  </style>
 </head>
 <body>
-  <div id="app">
-    <form @submit.prevent="sendRequest">
-      <label for="url">URL:</label><br>
-      <input type="text" id="url" v-model="url"><br>
-      <label for="header">Header:</label><br>
-      <input type="text" id="header" v-model="header"><br>
-      <input type="submit" value="Send Request">
-    </form>
-    <textarea v-model="responseData" rows="10" cols="50"></textarea>
-  </div>
 
-  <script>
-    new Vue({
-      el: '#app',
-      data: {
-        url: '',
-        header: '',
-        responseData: ''
-      },
-      methods: {
-        async sendRequest() {
-          try {
-            const response = await axios.get(this.url, { headers: { 'api-key': this.header } });
-            this.responseData = JSON.stringify(response.data, null, 2);
-          } catch (error) {
-            this.responseData = error.toString();
-          }
-        }
-      }
-    });
+  <table>
+    <thead>
+      <tr>
+        <th>Node ID</th>
+        <th>Subs</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+      Rows will be dynamically added here
+    </tbody>
+  </table>
+
+  <script src="jsonhandler.js"> </script>
+  <script src="usbserial.js"> </script>  
+  <script src="messager.js"> </script>  
+  <script>  
+    const webSerial = new WebSerial();
   </script>
+  <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="openSerial(115200)">Connect</button>
+  <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="GetNodeList()">Get List</button>
+  <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="sendMessage()">Message</button>
+  <button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="SendFireAlert()">Fire Alert</button>
+  <button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="SendLightingAlert()">Lighting Alert</button>
+  <button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="disconnectSerial()">Disconnect</button>
+
+
 </body>
 </html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Video Streams</title>
+    <style>
+        .video-container {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .video-container iframe {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Streams</h1>
+    
+    <div class="video-container">
+        <div>
+            <h2>Localhost Stream</h2>
+            <!-- <iframe src="http://127.0.0.1:5000/video1" width="640" height="480" frameborder="0"></iframe> -->
+        <!-- </div>
+        
+        <div>
+            <h2>Ultra96v2 Stream</h2>
+            <iframe src="http://192.168.182.121:5000/video1" width="640" height="480" frameborder="0"></iframe>
+        </div>
+    </div>
+</body>
+</html> --> -->
