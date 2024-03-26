@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <form @submit.prevent="sendRequest">
+      <label for="url">URL:</label><br>
+      <input type="text" id="url" v-model="url"><br>
+      <label for="header">Header:</label><br>
+      <input type="text" id="header" v-model="header"><br>
+      <input type="submit" value="Send Request">
+    </form>
+    <textarea v-model="responseData" rows="10" cols="50"></textarea>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        url: '',
+        header: '',
+        responseData: ''
+      },
+      methods: {
+        async sendRequest() {
+          try {
+            const response = await axios.get(this.url, { headers: { 'api-key': this.header } });
+            this.responseData = JSON.stringify(response.data, null, 2);
+          } catch (error) {
+            this.responseData = error.toString();
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
