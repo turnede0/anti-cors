@@ -7,6 +7,8 @@ class WebSerial {
 
 
     async readSerial() {
+      const elem = document.getElementById("consolex");
+      elem.textContent = "receivedData";
         function areBracesBalanced(str) {
             const openBraces = [];
             for (const char of str) {
@@ -51,8 +53,7 @@ class WebSerial {
             Node_jsonObjects =  JSON.parse(receivedData);
             renderTable(Node_jsonObjects);
 
-            const elem = document.getElementById("consolex");
-            elem.textContent = "receivedData";
+
 
 
             // Do something with the accumulated data
