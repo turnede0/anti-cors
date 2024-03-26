@@ -48,16 +48,16 @@ class WebSerial {
             clearTimeout(timeout); // Clear the timeout
           
             console.log('Data received:', receivedData);
-            // Node_jsonObjects =  JSON.parse(receivedData);
-            // renderTable(Node_jsonObjects);
+            Node_jsonObjects =  JSON.parse(receivedData);
+            renderTable(Node_jsonObjects);
 
             document.getElementById("console").textContent = receivedData;
 
 
-            // Do something with the accumulated data
-          } catch (error) {
-            console.error('Error reading from serial port:', error);
-          }
+          //   // Do something with the accumulated data
+          // } catch (error) {
+          //   console.error('Error reading from serial port:', error);
+          // }
           
 
       }
