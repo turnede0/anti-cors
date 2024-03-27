@@ -1,4 +1,4 @@
-const jsonString = '{"nodeId":2765094705,"root":true,"subs":[{"nodeId":769215230,"subs":[{"nodeId":769197602},{"nodeId":3291201329},{"nodeId":2765234573}]},{"nodeId":769215230,"subs":[{"nodeId":769197602},{"nodeId":3291201329}]}]}';
+const jsonString = '{"nodeId":240ac4290f40,"root":true,"subs":[{"nodeId":fcf5c453db80,"subs":[{"nodeId":fcf5c4538ea0}]},{"nodeId":fcf5c4538ea0}]} ';
 var Node_jsonObjects = JSON.parse(jsonString);
 
 function countNextLayerObjects(subs) {
