@@ -155,14 +155,14 @@ async function GetNodeList() {
 async function SendFireAlert() {  
     const jsonString = 'AT+JSONSEND={"node":"999","title":"Lunch","time":"12:00 ~ 12:00","venue":"Meeting Room A","content":"LCD Workpass Testing","special":1}\n';
     await webSerial.writeSerial(jsonString);
-    await webSerial.writeSerial("AT+SEND\n");
+    await webSerial.writeSerial("AT+REPEAT=1\n");
     }
 
 
 async function SendLightingAlert() {  
     const jsonString = 'AT+JSONSEND={"node":"999","title":"Meeting","time":"15:00 ~ 18:00","venue":"Meeting Room B","content":"LCD Workpass Testing","special":2}\n';
     await webSerial.writeSerial(jsonString);
-    await webSerial.writeSerial("AT+SEND\n");
+    await webSerial.writeSerial("AT+REPEAT=1\n");
     }
 
 async function rfidScan() {
