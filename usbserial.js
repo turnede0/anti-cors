@@ -153,14 +153,16 @@ async function GetNodeList() {
         await webSerial.writeSerial("AT+GETNODELIST\n");
         }
 async function SendFireAlert() {  
-    const jsonString = '{"node":"999","title":"Lunch","time":"12:00 ~ 12:00","venue":"Meeting Room A","content":"LCD Workpass Testing","special":1}\n';
+    const jsonString = 'AT+JSONSEND={"node":"999","title":"Lunch","time":"12:00 ~ 12:00","venue":"Meeting Room A","content":"LCD Workpass Testing","special":1}\n';
     await webSerial.writeSerial(jsonString);
+    await webSerial.writeSerial("AT+SEND\n");
     }
 
 
 async function SendLightingAlert() {  
-    const jsonString = '{"node":"999","title":"Lunch","time":"12:00 ~ 12:00","venue":"Meeting Room A","content":"LCD Workpass Testing","special":2}\n';
+    const jsonString = 'AT+JSONSEND={"node":"999","title":"Meeting","time":"15:00 ~ 18:00","venue":"Meeting Room B","content":"LCD Workpass Testing","special":2}\n';
     await webSerial.writeSerial(jsonString);
+    await webSerial.writeSerial("AT+SEND\n");
     }
 
 async function rfidScan() {
